@@ -1,0 +1,25 @@
+%%-*- mode: erlang -*-
+
+%% Set the minimum Mac target to 10.8 for 10.9 or greater.  This runtime
+%% check is needed since rebar's system_architecture check looks only at
+%% the version of the OS used to build the Erlang runtime, not the version
+%% actually running.
+
+Opt = lib:nonl(os:cmd("cat c_src/rocksdb/make_config.mk |grep PLATFORM_LDFLAGS| awk -F= '{print $2}'|sed -e 's/-lsnappy//'")).
+
+Flags = ["DRV_LDFLAGS"].
+
+{port_env, Vals} = lists:keyfind(port_env, 1, CONFIG).
+
+Fold = fun({Flag,Val}, Acc) ->
+               case lists:member(Flag, Flags) of
+                   true ->
+                       [{Flag, Val ++ " " ++ Opt}|Acc];
+                   false ->
+                       [{Flag, Val} | Acc]
+               end
+       end.
+
+NewVals = lists:foldl(Fold, [], Vals).
+
+lists:keyreplace(port_env, 1, CONFIG, {port_env, NewVals}).

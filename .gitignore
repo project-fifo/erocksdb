@@ -9,3 +9,8 @@ c_src/snappy*/
 c_src/system
 *~
 .rebar
+c_src/*.d
+_build/
+ltest/
+test.db/
+test_backup.db/
