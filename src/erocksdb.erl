@@ -196,7 +196,7 @@ open(Name, DBOpts, CFOpts) ->
 -spec(open(Name, DBOpts) ->
              {ok, db_handle()} | {error, any()} when Name::file:filename_all(),
                                                      DBOpts::db_options()).
-open(Name, DBOpts, CFOpts) ->
+open(Name, DBOpts) ->
     open(Name, DBOpts, []).
 
 %% @doc
