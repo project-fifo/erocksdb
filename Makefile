@@ -10,10 +10,10 @@ rm-deps:
 
 compile:
 	./c_src/build_deps.sh
-	PLATFORM_LDFLAGS="`cat c_src/rocksdb/${BUILD_CONFIG} |grep PLATFORM_LDFLAGS| awk -F= '{print $$2}'|sed -e 's/-lsnappy//'`" ./rebar compile
+	PLATFORM_LDFLAGS="`cat c_src/rocksdb/${BUILD_CONFIG} |grep PLATFORM_LDFLAGS| awk -F= '{print $$2}'|sed -e 's/-lsnappy//'`" ./rebar3 compile
 
 test: compile
-	./rebar eunit
+	./rebar3 eunit
 
 clean:
-	./rebar clean
+	./rebar3 clean
