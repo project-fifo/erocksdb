@@ -9,7 +9,7 @@ Pwd = filename:dirname(SCRIPT).
 
 File = filename:join([Pwd, "c_src", "rocksdb", "make_config.mk"]).
 
-Opt = lib:nonl(os:cmd("cat " ++ File  ++ " | grep PLATFORM_LDFLAGS | awk -F= '{print $2}' | sed -e 's/-lsnappy//'"))h.
+Opt = lib:nonl(os:cmd("cat " ++ File  ++ " | grep PLATFORM_LDFLAGS | awk -F= '{print $2}' | sed -e 's/-lsnappy//'")).
 
 Flags = ["DRV_LDFLAGS"].
 
