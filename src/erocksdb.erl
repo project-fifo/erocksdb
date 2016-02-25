@@ -24,7 +24,7 @@
 %%======================================================================
 -module(erocksdb).
 
--export([open/3, open_with_cf/3, close/1]).
+-export([open/2, open/3, open_with_cf/3, close/1]).
 -export([snapshot/1, release_snapshot/1]).
 -export([list_column_families/2, create_column_family/3, drop_column_family/2]).
 -export([put/4, put/5, delete/3, delete/4, write/3, get/3, get/4]).
@@ -190,6 +190,14 @@ open(Name, DBOpts, CFOpts) ->
     CallerRef = make_ref(),
     async_open(CallerRef, Name, DBOpts, CFOpts),
     ?WAIT_FOR_REPLY(CallerRef).
+
+%% @doc
+%% Open RocksDB with the defalut column family
+-spec(open(Name, DBOpts) ->
+             {ok, db_handle()} | {error, any()} when Name::file:filename_all(),
+                                                     DBOpts::db_options()).
+open(Name, DBOpts, CFOpts) ->
+    open(Name, DBOpts, []).
 
 %% @doc
 %% Open RocksDB with the specified column families
