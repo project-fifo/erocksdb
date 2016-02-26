@@ -23,7 +23,7 @@
 {application, erocksdb,
  [
   {description, "RocksDB for Erlang"},
-  {vsn, "0.4"},
+  {vsn, "0.4.0"},
   {registered, []},
   {applications, [
                   kernel,
@@ -31,4 +31,7 @@
                  ]},
   {env, [
         ]}
+  {maintainers, ["leo-project", "Heinz N. Gies"]},
+  {licenses, ["Apache"]},
+  {links, [{"Github","https://github.com/leo-project/erocksdb"}]}
  ]}.
