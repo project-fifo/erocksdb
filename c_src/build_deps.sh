@@ -95,7 +95,7 @@ case "$1" in
 
         ./build_deps.sh get-deps
         if [ ! -f rocksdb/librocksdb.a ]; then
-            (cd rocksdb && CXXFLAGS=$CXXFLAGS CXX=$CXX $MAKE static_lib)
+            (cd rocksdb && CXXFLAGS=$CXXFLAGS CXX=$CXX $MAKE -j 16 static_lib)
 
         fi
         ;;
