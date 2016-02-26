@@ -9,7 +9,7 @@ Pwd = filename:dirname(SCRIPT).
 
 File = filename:join([Pwd, "c_src", "rocksdb", "make_config.mk"]).
 
-Opt = lib:nonl(os:cmd("cat " ++ File  ++ " | grep PLATFORM_LDFLAGS | awk -F= '{print $2}' | sed -e 's/-lsnappy//'")).
+Opt = " $(cat " ++ File  ++ " | grep PLATFORM_LDFLAGS | awk -F= '{print $2}' | sed -e 's/-lsnappy//')".
 
 Flags = ["DRV_LDFLAGS"].
 
@@ -18,7 +18,7 @@ Flags = ["DRV_LDFLAGS"].
 Fold = fun({Flag,Val}, Acc) ->
                case lists:member(Flag, Flags) of
                    true ->
-                       [{Flag, Val ++ " " ++ Opt}|Acc];
+                       [{Flag, Val ++ Opt}|Acc];
                    false ->
                        [{Flag, Val} | Acc]
                end
