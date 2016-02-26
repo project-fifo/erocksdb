@@ -30,7 +30,7 @@
                   stdlib
                  ]},
   {env, [
-        ]}
+        ]},
   {maintainers, ["leo-project", "Heinz N. Gies"]},
   {licenses, ["Apache"]},
   {links, [{"Github","https://github.com/leo-project/erocksdb"}]}
